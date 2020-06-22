@@ -35,7 +35,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './template.html'
+      template: './index.html'
     }),
     // new ExtractTextPlugin({
     //   filename: 'css/[name].css'
