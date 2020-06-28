@@ -8,11 +8,12 @@ const webpack = require('webpack'); // 用于访问内置插件
 
 module.exports = {
   entry: {
-    'app': './js/index.js'
+    'index': './js/index.js',
+    'pageOne': './js/page1.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'js/index.js'
+    filename: 'js/[name].[hash].js'
   },
   devServer: {
     contentBase: './dist',
@@ -34,8 +35,19 @@ module.exports = {
     ]
   },
   plugins: [
+    // 主页面
     new HtmlWebpackPlugin({
-      template: './index.html'
+      template: './index.html',
+      filename: 'index.html',
+      hash: true,
+      chunks: ['index']
+    }),
+    // 页面二
+    new HtmlWebpackPlugin({
+      template: './pageOne.html',
+      filename: 'pageOne.html',
+      hash: true,
+      chunks: ['pageOne']
     }),
     // new ExtractTextPlugin({
     //   filename: 'css/[name].css'
