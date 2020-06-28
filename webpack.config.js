@@ -31,18 +31,26 @@ module.exports = {
         //   fallback: "style-loader",
         //   use: "css-loader"
         // })
+      },
+      {
+        test: /\.(htm|html)$/,
+        use:[ 'html-loader'] 
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
+        use: ['url-loader']
       }
     ]
   },
   plugins: [
-    // 主页面
+    // index.html
     new HtmlWebpackPlugin({
       template: './index.html',
       filename: 'index.html',
       hash: true,
       chunks: ['index']
     }),
-    // 页面二
+    // page1.html
     new HtmlWebpackPlugin({
       template: './pageOne.html',
       filename: 'pageOne.html',
