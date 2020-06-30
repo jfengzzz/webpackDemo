@@ -34,14 +34,14 @@ module.exports = {
   plugins: [
     // index.html
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: './src/index.html',
       filename: 'index.html',
       hash: true,
       chunks: ['index']
     }),
     // page1.html
     new HtmlWebpackPlugin({
-      template: 'pageOne.html',
+      template: './src/pageOne.html',
       filename: 'pageOne.html',
       hash: true,
       chunks: ['pageOne']
