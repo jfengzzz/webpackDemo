@@ -6,8 +6,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // 打包前清�
 
 module.exports = {
   entry: {
-    'index': './js/index.js',
-    'pageOne': './js/page1.js'
+    'index': './src/js/index.js',
+    'pageOne': './src/js/page1.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -20,12 +20,12 @@ module.exports = {
         use:[ 'html-loader']
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/,
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?/,
         use: [{
           loader: 'url-loader',
           options: {
-            limit: 8,
-            name: 'img/[name][hash].[ext]'
+            limit: 100000,
+            name: 'img/[name].[hash].[ext]'
           }
         }]
       }
