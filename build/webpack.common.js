@@ -37,15 +37,38 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html',
       hash: true,
-      chunks: ['index']
+      chunks: ['index', 'commons', 'vendors']
     }),
     // page1.html
     new HtmlWebpackPlugin({
       template: './src/pageOne.html',
       filename: 'pageOne.html',
       hash: true,
-      chunks: ['pageOne']
+      chunks: ['pageOne', 'commons', 'vendors']
     }),
     new CleanWebpackPlugin()
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      chunks: 'initial',
+      minSize: 3, // 模块的最小体积
+      minChunks: 2, // 模块的最小被引用次数
+      maxAsyncRequests: 5, // 按需加载的最大并行请求数
+      maxInitialRequests: 3, // 一个入口最大并行请求数
+      automaticNameDelimiter: '~', // 文件名的连接符
+      cacheGroups: { // 缓存组
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          name: 'vendors'
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+          name: 'commons'
+        }
+      }
+    }
+  }
 }
